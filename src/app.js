@@ -2,8 +2,11 @@ import { ItemArray } from './item-array.js';
 import { productData } from './api.js';
 
 const items = new ItemArray(productData);
-const workingItemArray = items.getItems();
-console.log(workingItemArray);
+//const workingItemArray = items.getItems();
+
+const itemElement1 = document.getElementById('item-1');
+const itemElement2 = document.getElementById('item-2');
+const itemElement3 = document.getElementById('item-3');
 
 
 const continueButon = document.getElementById('continue-button');
@@ -14,16 +17,17 @@ function event() {
     let newItem2 = items.getItemAtRandom();
 
     while (newItem2.id === newItem1.id) {
-        console.log('second repeat: ' + newItem1.id, newItem2.id);
         newItem2 = items.getItemAtRandom();
     }
 
     let newItem3 = items.getItemAtRandom();
 
     while ((newItem3.id === newItem1.id) || (newItem3.id === newItem2.id)) {
-        console.log('third repeat: ' + newItem1.id, newItem2.id, newItem3.id)
         newItem3 = items.getItemAtRandom();
     }
 
-    console.log(`1 ${newItem1.id}, 2 ${newItem2.id}, 3 ${newItem3.id}`);
+    itemElement1.src = newItem1.image;
+    itemElement2.src = newItem2.image;
+    itemElement3.src = newItem3.image;
+
 }
