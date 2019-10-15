@@ -8,7 +8,7 @@ export class ItemArray {
         this.items.forEach((item, i) => {
             if (someId === item.id) {
                 this.items.splice(i, 1);
-            }
+            } 
         });
     }
 

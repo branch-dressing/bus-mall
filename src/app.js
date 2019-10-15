@@ -1,25 +1,30 @@
 import { ItemArray } from './item-array.js';
 import { productData } from './api.js';
 
-const itemArray = new ItemArray(productData);
-let items = itemArray;
+const holyItemArray = new ItemArray(productData);
+let items = holyItemArray;
 
-//const workingItemArray = items.getItems();
+let selections = 0;
 
 const itemRadioTags = document.querySelectorAll('input');
 const itemElement1 = document.getElementById('item-1');
 const itemElement2 = document.getElementById('item-2');
 const itemElement3 = document.getElementById('item-3');
 
+itemElement1.addEventListener('click', event);
+itemElement2.addEventListener('click', event);
+itemElement3.addEventListener('click', event);
+
 event();
 
 
-const continueButon = document.getElementById('continue-button');
-continueButon.addEventListener('click', event);
-
 function event() {
-    console.log(items);
+    if (selections === 5) {
+        testComplete();
+        return;
+    }
     const newItem1 = items.getItemAtRandom();
+
     let newItem2 = items.getItemAtRandom();
 
     while (newItem2.id === newItem1.id) {
@@ -43,6 +48,7 @@ function event() {
     itemRadioTags.forEach((radioTag, i) => {
         if (i === 0) {
             radioTag.value = newItem1.id;
+            console.log(radioTag)
         } else if (i === 1) {
             radioTag.value = newItem2.id;
         } else if (i === 2) {
@@ -50,11 +56,21 @@ function event() {
         }
     });
 
+    
+
     items = new ItemArray(productData);
-    console.log(items);
+
     items.removeItemById(newItem1.id);
     items.removeItemById(newItem2.id);
     items.removeItemById(newItem3.id);
-    console.log(items);
 
+    selections++;
+    console.log(selections);
+
+}
+
+function testComplete() {
+    itemElement1.style.display = 'none';
+    itemElement2.style.display = 'none';
+    itemElement3.style.display = 'none';
 }
