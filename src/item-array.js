@@ -4,6 +4,14 @@ export class ItemArray {
         this.items = items.slice();
     }
 
+    removeItemById(someId) {
+        this.items.forEach(item => {
+            if (someId === item.id) {
+                this.items.splice(someId, 1);
+            }
+        });
+    }
+
     getItems() {
         return this.items;
     }

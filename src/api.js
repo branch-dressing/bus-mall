@@ -125,4 +125,4 @@ export const productData = [
         clicks: 0,
         timesShown: 0
     },
- ];
+];
