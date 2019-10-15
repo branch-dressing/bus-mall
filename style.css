@@ -1,3 +1,8 @@
 img {
-    height: 200px;
+    width: 200px;
+}
+
+.product-section {
+    display: flex;
+    align-items: center;
 }

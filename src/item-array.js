@@ -5,9 +5,9 @@ export class ItemArray {
     }
 
     removeItemById(someId) {
-        this.items.forEach(item => {
+        this.items.forEach((item, i) => {
             if (someId === item.id) {
-                this.items.splice(someId, 1);
+                this.items.splice(i, 1);
             }
         });
     }

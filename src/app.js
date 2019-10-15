@@ -50,7 +50,7 @@ function event() {
         }
     });
 
-    items = itemArray;
+    items = new ItemArray(productData);
     console.log(items);
     items.removeItemById(newItem1.id);
     items.removeItemById(newItem2.id);
