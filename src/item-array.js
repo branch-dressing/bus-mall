@@ -17,9 +17,9 @@ export class ItemArray {
     }
 
     getItemById(someId) {
-        this.items.forEach(item => {
-            if (someId === item.id) {
-                return item;
+        this.items.forEach(boop => {
+            if (someId === boop.id) {
+                return boop;
             }
         });
     }

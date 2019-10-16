@@ -29,9 +29,9 @@ function event() {
     itemElement2.src = threeItemArray[1].image;
     itemElement3.src = threeItemArray[2].image;
 
-    /*items.increaseTimesShown(threeItemArray[0]);
-    items.increaseTimesShown(threeItemArray[1]);
-    items.increaseTimesShown(threeItemArray[2]);*/
+    increaseTimesShown(threeItemArray[0].id);
+    increaseTimesShown(threeItemArray[1].id);
+    increaseTimesShown(threeItemArray[2].id);
 
     itemRadioTags.forEach((radioTag, i) => {
         if (i === 0) {
@@ -42,8 +42,9 @@ function event() {
             radioTag.value = threeItemArray[2].id;
         }
     });
-    console.log(threeItemArray[0].id);
-    pushSelectionIntoArray(threeItemArray[0].id);
+
+    //CHANGE ARGUEMENT TO SELCTED IMAGE
+    increaseCountOfSelection(threeItemArray[0].id);
 
     items = new ItemArray(productData);
     items.removeItemById(threeItemArray[0].id);
@@ -54,6 +55,7 @@ function event() {
 }
 
 function testComplete() {
+    console.log(productCounts);
     itemElement1.style.display = 'none';
     itemElement2.style.display = 'none';
     itemElement3.style.display = 'none';
@@ -76,13 +78,19 @@ function getThreeItems() {
     return threeItemArray;
 }
 
-function pushSelectionIntoArray(someArrayWithIndexAndId) {
+function increaseCountOfSelection(someArrayWithIndexAndId) {
     for (let i = 0; i < productCounts.length; i++) {
-        console.log(productCounts[i].id, someArrayWithIndexAndId);
         if (productCounts[i].id === someArrayWithIndexAndId) {
             productCounts[i].count++;
         }
     }
 
-    console.log(productCounts);
+}
+
+function increaseTimesShown(itemShownId) { 
+    for (let i = 0; i < productCounts.length; i++) {
+        if (productCounts[i].id === itemShownId) {
+            productCounts[i].shown++;
+        }
+    }
 }
