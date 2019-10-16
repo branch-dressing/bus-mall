@@ -89,4 +89,97 @@ export const productData = [
         name: 'Wine Glass That Will Definitely Spill',
         image: '../assets/wine-glass.jpg',
     },
+];
+
+export const productCounts = [
+    {
+        id: 'bag',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'banana',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'bathroom',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'boots',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'breakfast',
+        count: 0,
+        shown: 0,
+    },
+    {
+        id: 'bubblegum',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'chair',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'cthulhu',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'dog-duck',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'dragon',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'pen',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'scissors',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'shark',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'sweep',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'tauntaun',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'usb',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'water-can',
+        count: 0,
+        shown: 0
+    },
+    {
+        id: 'unicowine-glass',
+        count: 0,
+        shown: 0
+    },
  ];

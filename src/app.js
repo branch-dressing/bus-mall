@@ -1,9 +1,7 @@
 import { ItemArray } from './item-array.js';
-import { productData } from './api.js';
+import { productData, productCounts } from './api.js';
 
 let items = new ItemArray(productData);
-
-let itemCountArray = [];
 
 let selections = 0;
 
@@ -79,15 +77,12 @@ function getThreeItems() {
 }
 
 function pushSelectionIntoArray(someArrayWithIndexAndId) {
-    if (!itemCountArray[0]) {
-        itemCountArray.push({
-            id: someArrayWithIndexAndId,
-            count: 1
-        });
-    } else {
-        for (let i = 0; i <= itemCountArray.length; i++)
-        itemCountArray[0].count = itemCountArray[0].count++;
-
+    for (let i = 0; i < productCounts.length; i++) {
+        console.log(productCounts[i].id, someArrayWithIndexAndId);
+        if (productCounts[i].id === someArrayWithIndexAndId) {
+            productCounts[i].count++;
+        }
     }
-    console.log(itemCountArray);
+
+    console.log(productCounts);
 }
