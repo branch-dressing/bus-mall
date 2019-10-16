@@ -102,7 +102,6 @@ function createChart() {
     const ctx = document.getElementById('chart').getContext('2d');
 
     const count = countData;
-    const shown = shownData;
     const labels = ids;
     const labelColors = ['red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue'];
 

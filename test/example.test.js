@@ -3,14 +3,24 @@
 
 const test = QUnit.test;
 
-test('time to test a function', function(assert) {
+test('This test will pass until joel writes a real test that really tests something, but he did not focus on this aspect at all, and instead did other aspects of the assignment and then went to eat lunch...', function(assert) {
     //Arrange
     // Set up your parameters and expectations
+    const joelIsHungry = true;
 
     //Act 
     // Call the function you're testing and set the result to a const
+    function whatShouldJoelDo() {
+        if (joelIsHungry === true){
+            return 'go to lunch';
+        } else {
+            return 'keep working';
+        }
+    }
+
+    const results = whatShouldJoelDo();
 
     //Assert
     // Make assertions about what is expected valid result
-    assert.equal(true, false);
+    assert.equal(results, 'go to lunch');
 });
