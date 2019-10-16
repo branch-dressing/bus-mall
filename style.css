@@ -1,0 +1,13 @@
+img {
+    width: 200px;
+}
+
+.product-section {
+    display: flex;
+    align-items: center;
+}
+
+canvas {
+    width: 75%;
+    height: 500px;
+  }
