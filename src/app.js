@@ -2,9 +2,11 @@ import { ItemArray } from './item-array.js';
 import { productData, productCounts } from './api.js';
 
 let items = new ItemArray(productData);
-
 let selections = 0;
-
+let itemSelection;
+let ids = [];
+let countData = [];
+let shownData = [];
 
 const itemRadioTags = document.querySelectorAll('input');
 const itemElement1 = document.getElementById('item-1');
@@ -16,8 +18,12 @@ continueButon.addEventListener('click', event);
 
 event();
 
-
 function event() {
+    if (selections !== 0) {
+        itemSelection = document.querySelector('input:checked').value;
+        increaseSelection(itemSelection);
+    }
+
     if (selections === 25) {
         testComplete();
         return;
@@ -33,18 +39,9 @@ function event() {
     increaseTimesShown(threeItemArray[1].id);
     increaseTimesShown(threeItemArray[2].id);
 
-    itemRadioTags.forEach((radioTag, i) => {
-        if (i === 0) {
-            radioTag.value = threeItemArray[0].id;
-        } else if (i === 1) {
-            radioTag.value = threeItemArray[1].id;
-        } else if (i === 2) {
-            radioTag.value = threeItemArray[2].id;
-        }
-    });
-
-    //CHANGE ARGUEMENT TO SELCTED IMAGE
-    increaseCountOfSelection(threeItemArray[0].id);
+    for (let i = 0; i < itemRadioTags.length; i++) {
+        itemRadioTags[i].value = threeItemArray[i].id;
+    }
 
     items = new ItemArray(productData);
     items.removeItemById(threeItemArray[0].id);
@@ -55,10 +52,16 @@ function event() {
 }
 
 function testComplete() {
-    console.log(productCounts);
-    itemElement1.style.display = 'none';
-    itemElement2.style.display = 'none';
-    itemElement3.style.display = 'none';
+    for (let i = 0; i < productCounts.length; i++) {
+        ids.push(productCounts[i].id + ' clikced');
+        ids.push(productCounts[i].id + ' shown');
+        countData.push(productCounts[i].count);
+        countData.push(productCounts[i].shown);
+    }
+    let productSection = document.getElementById('hide-me');
+    productSection.style.display = 'none';
+    createChart();
+
 }
 
 function getThreeItems() {
@@ -78,9 +81,9 @@ function getThreeItems() {
     return threeItemArray;
 }
 
-function increaseCountOfSelection(someArrayWithIndexAndId) {
+function increaseSelection(itemId) {
     for (let i = 0; i < productCounts.length; i++) {
-        if (productCounts[i].id === someArrayWithIndexAndId) {
+        if (productCounts[i].id === itemId) {
             productCounts[i].count++;
         }
     }
@@ -93,4 +96,34 @@ function increaseTimesShown(itemShownId) {
             productCounts[i].shown++;
         }
     }
+}
+
+function createChart() {
+    const ctx = document.getElementById('chart').getContext('2d');
+
+    const count = countData;
+    const shown = shownData;
+    const labels = ids;
+    const labelColors = ['red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue', 'red', 'blue'];
+
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Clicks',
+                data: count,
+                backgroundColor: labelColors
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
 }
