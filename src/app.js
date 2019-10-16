@@ -1,76 +1,93 @@
 import { ItemArray } from './item-array.js';
 import { productData } from './api.js';
 
-const holyItemArray = new ItemArray(productData);
-let items = holyItemArray;
+let items = new ItemArray(productData);
+
+let itemCountArray = [];
 
 let selections = 0;
+
 
 const itemRadioTags = document.querySelectorAll('input');
 const itemElement1 = document.getElementById('item-1');
 const itemElement2 = document.getElementById('item-2');
 const itemElement3 = document.getElementById('item-3');
 
-itemElement1.addEventListener('click', event);
-itemElement2.addEventListener('click', event);
-itemElement3.addEventListener('click', event);
+const continueButon = document.getElementById('continue-button');
+continueButon.addEventListener('click', event);
 
 event();
 
 
 function event() {
-    if (selections === 5) {
+    if (selections === 25) {
         testComplete();
         return;
     }
-    const newItem1 = items.getItemAtRandom();
 
-    let newItem2 = items.getItemAtRandom();
+    let threeItemArray = getThreeItems();
 
-    while (newItem2.id === newItem1.id) {
-        newItem2 = items.getItemAtRandom();
-    }
+    itemElement1.src = threeItemArray[0].image;
+    itemElement2.src = threeItemArray[1].image;
+    itemElement3.src = threeItemArray[2].image;
 
-    let newItem3 = items.getItemAtRandom();
-
-    while ((newItem3.id === newItem1.id) || (newItem3.id === newItem2.id)) {
-        newItem3 = items.getItemAtRandom();
-    }
-
-    itemElement1.src = newItem1.image;
-    itemElement2.src = newItem2.image;
-    itemElement3.src = newItem3.image;
-
-    items.increaseTimesShown(newItem1);
-    items.increaseTimesShown(newItem2);
-    items.increaseTimesShown(newItem3);
+    /*items.increaseTimesShown(threeItemArray[0]);
+    items.increaseTimesShown(threeItemArray[1]);
+    items.increaseTimesShown(threeItemArray[2]);*/
 
     itemRadioTags.forEach((radioTag, i) => {
         if (i === 0) {
-            radioTag.value = newItem1.id;
-            console.log(radioTag)
+            radioTag.value = threeItemArray[0].id;
         } else if (i === 1) {
-            radioTag.value = newItem2.id;
+            radioTag.value = threeItemArray[1].id;
         } else if (i === 2) {
-            radioTag.value = newItem3.id;
+            radioTag.value = threeItemArray[2].id;
         }
     });
-
-    
+    console.log(threeItemArray[0].id);
+    pushSelectionIntoArray(threeItemArray[0].id);
 
     items = new ItemArray(productData);
-
-    items.removeItemById(newItem1.id);
-    items.removeItemById(newItem2.id);
-    items.removeItemById(newItem3.id);
+    items.removeItemById(threeItemArray[0].id);
+    items.removeItemById(threeItemArray[1].id);
+    items.removeItemById(threeItemArray[2].id);
 
     selections++;
-    console.log(selections);
-
 }
 
 function testComplete() {
     itemElement1.style.display = 'none';
     itemElement2.style.display = 'none';
     itemElement3.style.display = 'none';
+}
+
+function getThreeItems() {
+    const newItem1 = items.getItemAtRandom();
+
+    let newItem2 = items.getItemAtRandom();
+    while (newItem2.id === newItem1.id) {
+        newItem2 = items.getItemAtRandom();
+    }
+
+    let newItem3 = items.getItemAtRandom();
+    while ((newItem3.id === newItem1.id) || (newItem3.id === newItem2.id)) {
+        newItem3 = items.getItemAtRandom();
+    }
+
+    const threeItemArray = [newItem1, newItem2, newItem3];
+    return threeItemArray;
+}
+
+function pushSelectionIntoArray(someArrayWithIndexAndId) {
+    if (!itemCountArray[0]) {
+        itemCountArray.push({
+            id: someArrayWithIndexAndId,
+            count: 1
+        });
+    } else {
+        for (let i = 0; i <= itemCountArray.length; i++)
+        itemCountArray[0].count = itemCountArray[0].count++;
+
+    }
+    console.log(itemCountArray);
 }
