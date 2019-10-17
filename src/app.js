@@ -6,7 +6,6 @@ let selections = 0;
 let itemSelection;
 let ids = [];
 let countData = [];
-let shownData = [];
 
 const itemRadioTags = document.querySelectorAll('input');
 const itemElement1 = document.getElementById('item-1');
@@ -60,6 +59,8 @@ function testComplete() {
     }
     let productSection = document.getElementById('hide-me');
     productSection.style.display = 'none';
+    let chartSection = document.getElementById('chart-place');
+    chartSection.style.display = 'block';
     createChart();
 
 }
