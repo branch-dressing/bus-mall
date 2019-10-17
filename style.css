@@ -1,13 +1,43 @@
 img {
     width: 200px;
+    padding: 10px
 }
 
 .product-section {
     display: flex;
+    height: 350px;
     align-items: center;
+    justify-content: center;
+    background-color: #1f88c3;
 }
 
 canvas {
     width: 75%;
     height: 500px;
   }
+
+#chart-place {
+    display: none;
+}
+
+body {
+    background-image: url("https://austriker27.github.io/bus-mall/img/logo.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+    width: 800px;
+    margin: 0 auto;
+}
+
+#heading {
+    background-color: white;
+    opacity: .85
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    margin: 15px;
+    background-color: #213258;
+    color: white;
+    font-size: 20px
+}
